@@ -4,13 +4,13 @@
 {"id":"T-1019","summary":"Toilet won't flush; tenant thinks the chain inside the cistern has snapped.","pass":true}
 {"id":"T-1023","summary":"Carbon monoxide alarm in the kitchen beeping every minute; probably needs a new battery.","pass":false,"note":"Calls it a battery problem. The tenant didn't know that, and it leaves out that a CO alarm is going off."}
 {"id":"T-1027","summary":"Water dripping through the bathroom ceiling light fitting, probably from a leak in the flat above. Tenant has switched the light off at the switch.","pass":true}
-{"id":"T-1031","summary":"Recurring black mould around the back bedroom window, with condensation on the windowsill most mornings.","pass":true}
+{"id":"T-1031","summary":"Recurring black mould around the back bedroom window, with condensation on the windowsill most mornings.","pass":false,"note":"Calls it condensation. The tenant only said the windowsill is wet."}
 {"id":"T-1034","summary":"Gas fire in the living room clicks but won't light. Central heating works. Tenant will be in on Thursday morning.","pass":false,"note":"Says the tenant will be in on Thursday. They never said that."}
 {"id":"T-1037","summary":"Kitchen tap dripping constantly; tenant has tried tightening it.","pass":true}
 {"id":"T-1044","summary":"Front door lock broken: the key turns but the latch doesn't catch, so the door can't be locked. Tenants have wedged a chair against it.","pass":true}
 {"id":"T-1045","summary":"Mould reported.","pass":false,"note":"Doesn't say where the mould is. It's round the bath."}
 {"id":"T-1048","summary":"Sockets in the living room and bedroom have no power; kitchen sockets work. One switch in the fuse box trips straight back down when reset.","pass":true}
-{"id":"T-1055","summary":"Smell like rotten eggs in the hall whenever the heating comes on, which may be a gas leak. The hall radiator also stays cold.","pass":true}
+{"id":"T-1055","summary":"Smell like rotten eggs in the hall whenever the heating comes on, which may be a gas leak. The hall radiator also stays cold.","pass":false,"note":"Adds that it may be a gas leak, and turns 'a bit like eggs' into rotten eggs."}
 {"id":"T-1056","summary":"Freezer drawer completely iced up and the fridge isn't keeping food cold (milk went off in two days). The fridge's thermostat has failed and needs replacing.","pass":false,"note":"Says the thermostat has failed. That's a guess, the tenant didn't say it."}
 {"id":"T-1059","summary":"Fridge freezer has stopped cooling; the light works but the freezer is defrosting.","pass":true}
 {"id":"T-1061","summary":"Two storage heaters not coming on; the living room heater works.","pass":true}
@@ -29,7 +29,7 @@
 {"id":"T-1087","summary":"Roof tiles found in the front garden after the storm, probably from the roof. No leaks inside so far.","pass":true}
 {"id":"T-1089","summary":"Heavy condensation on the bedroom windows every morning, running onto the sill. No mould yet.","pass":true}
 {"id":"T-1091","summary":"Storage heaters not working for two days. Contact the tenant's daughter Karen on 07700 900230.","pass":false,"note":"Has the daughter's name and phone number."}
-{"id":"T-1092","summary":"Washing machine doesn't drain; water left in the drum at the end of the cycle.","pass":true}
+{"id":"T-1092","summary":"Washing machine doesn't drain; water left in the drum at the end of the cycle.","pass":false,"note":"Leaves out the smell the tenant reported."}
 {"id":"T-1093","summary":"Two fence panels in the back garden blown down overnight; the tenants' dog can now get out.","pass":true}
 {"id":"T-1095","summary":"Sewage smell in the bathroom; dirty water came up through the bath plughole when the toilet was flushed.","pass":true}
 {"id":"T-1096","summary":"Strong smell of gas outside the front of the house, near the meter box. Tenant says it doesn't seem to be inside.","pass":true}
