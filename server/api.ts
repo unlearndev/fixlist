@@ -1,6 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { send } from "./http.ts";
 import { loadLog, loadProperties } from "./data.ts";
+import { reviewApi } from "./review.ts";
 
 type Next = (err?: unknown) => void;
 
@@ -19,6 +20,8 @@ export async function api(req: IncomingMessage, res: ServerResponse, next: Next)
         .reverse();
       return send(res, 200, reports);
     }
+
+    if (url.pathname.startsWith("/api/review/") && (await reviewApi(req, res))) return;
 
     if (req.method === "GET" && url.pathname.startsWith("/api/properties/")) {
       const property = loadProperties().get(url.pathname.split("/").pop()!);
