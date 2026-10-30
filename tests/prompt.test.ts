@@ -22,12 +22,21 @@ describe("buildUserMessage", () => {
     expect(message).toContain("<report>\nThe tap is dripping.\n</report>");
   });
 
-  it("says how the report arrived and when", () => {
+  it("says how the report arrived", () => {
     const message = buildUserMessage(
       { text: "No hot water.", channel: "phone", receivedAt: "2026-10-01T09:00:00Z" },
       property,
     );
-    expect(message).toContain("phone call, typed up by staff, received 1 October 2026");
+    expect(message).toContain("Report (phone call, typed up by staff)");
+  });
+
+  it("sends the property facts the repairs policy depends on", () => {
+    const message = buildUserMessage(
+      { text: "The toilet won't flush.", channel: "form", receivedAt: "2026-10-01T09:00:00Z" },
+      { ...property, vulnerableTenant: true, vulnerableNote: "elderly tenant" },
+    );
+    expect(message).toContain("- Toilets: 1");
+    expect(message).toContain("- Vulnerable tenant: yes (elderly tenant)");
   });
 
   it("never sends the tenant's contact details", () => {

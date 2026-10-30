@@ -54,14 +54,8 @@ Write the summary for the contractor, in at most three sentences: what's wrong, 
 const CHANNELS = { email: "email", form: "web form", phone: "phone call, typed up by staff" };
 
 // The message for one report: the property record, then the report itself.
+// The repairs policy depends on the record (one toilet, a vulnerable tenant), so it always goes with the report.
 export function buildUserMessage(report: Report, property: Property): string {
-  const received = new Date(report.receivedAt).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-
   return `Property record
 - Type: ${property.type}
 - Toilets: ${property.toilets}
@@ -69,7 +63,7 @@ export function buildUserMessage(report: Report, property: Property): string {
 - Gas supply: ${property.gasSupply ? "yes" : "no"}
 - Vulnerable tenant: ${property.vulnerableTenant ? `yes (${property.vulnerableNote})` : "no"}
 
-Report (${CHANNELS[report.channel]}, received ${received})
+Report (${CHANNELS[report.channel]})
 <report>
 ${report.text}
 </report>`;
