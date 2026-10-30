@@ -2,9 +2,12 @@ import { writeFileSync } from "node:fs";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { Candidate, Case } from "../evals/types.ts";
 import { readBody, send } from "./http.ts";
-import { loadProperties, readJsonl } from "./data.ts";
+import { loadLog, loadProperties, readJsonl } from "./data.ts";
 
 const root = new URL("../", import.meta.url);
+
+// A person's verdict on one summary the feature wrote.
+type HumanGrade = { id: string; summary: string; pass: boolean; note?: string };
 
 function writeJsonl(path: string, rows: unknown[]) {
   writeFileSync(new URL(path, root), rows.map((r) => JSON.stringify(r)).join("\n") + (rows.length ? "\n" : ""));
@@ -72,6 +75,38 @@ export async function reviewApi(req: IncomingMessage, res: ServerResponse): Prom
     writeJsonl("evals/dataset.jsonl", dataset);
     writeJsonl("evals/dropped.jsonl", dropped);
     send(res, 200, { ok: true, cases: dataset.length });
+    return true;
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/review/grading") {
+    // Each case in the dataset, with the summary the feature wrote for it in production.
+    const log = new Map(loadLog().map((e) => [e.id, e]));
+    const grades = new Map(readJsonl<HumanGrade>("evals/human-grades.jsonl").map((g) => [g.id, g]));
+    const rows = readJsonl<Case>("evals/dataset.jsonl").map((c) => ({
+      id: c.id,
+      report: c.report,
+      expected: c.expected,
+      property: facts(c.propertyId),
+      summary: log.get(c.id)?.output.summary ?? "",
+      grade: grades.get(c.id) ?? null,
+    }));
+    send(res, 200, rows);
+    return true;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/review/grade") {
+    const body = (await readBody(req)) as { id: string; pass: boolean; note?: string };
+    const summary = loadLog().find((e) => e.id === body.id)?.output.summary;
+    if (summary === undefined) {
+      send(res, 404, { error: `No report ${body.id}` });
+      return true;
+    }
+    const grades = readJsonl<HumanGrade>("evals/human-grades.jsonl").filter((g) => g.id !== body.id);
+    const note = body.note?.trim() || undefined;
+    grades.push({ id: body.id, summary, pass: body.pass, ...(note ? { note } : {}) });
+    grades.sort((a, b) => a.id.localeCompare(b.id));
+    writeJsonl("evals/human-grades.jsonl", grades);
+    send(res, 200, { ok: true, graded: grades.length });
     return true;
   }
 

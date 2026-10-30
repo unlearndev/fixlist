@@ -13,7 +13,10 @@ type CandidateRow = {
   decision: Decision;
 };
 
-const tabs = [{ id: "label", label: "Label cases" }];
+const tabs = [
+  { id: "label", label: "Label cases" },
+  { id: "grade", label: "Grade summaries" },
+];
 
 export async function renderReview(root: HTMLElement, tab = "label", id?: string) {
   root.innerHTML = `
@@ -22,7 +25,7 @@ export async function renderReview(root: HTMLElement, tab = "label", id?: string
       <div id="tab"></div>
     </section>`;
   const body = root.querySelector<HTMLElement>("#tab")!;
-  return renderLabel(body, id);
+  return tab === "grade" ? renderGrade(body, id) : renderLabel(body, id);
 }
 
 async function renderLabel(root: HTMLElement, id?: string) {
@@ -106,4 +109,71 @@ function labelForm(c: CandidateRow): string {
         <button id="drop">Leave out</button>
       </div>
     </div>`;
+}
+
+type GradeRow = {
+  id: string;
+  report: string;
+  expected: { category: string; urgency: string };
+  property: { type: string; toilets: number; heating: string; vulnerableTenant: string } | null;
+  summary: string;
+  grade: { pass: boolean; note?: string } | null;
+};
+
+async function renderGrade(root: HTMLElement, id?: string) {
+  const rows = await getJson<GradeRow[]>("/api/review/grading");
+  if (rows.length === 0) {
+    root.innerHTML = `<p class="empty">No cases in <code>evals/dataset.jsonl</code> yet.</p>`;
+    return;
+  }
+  const graded = rows.filter((r) => r.grade).length;
+  const failed = rows.filter((r) => r.grade && !r.grade.pass).length;
+  const current = rows.find((r) => r.id === id) ?? rows.find((r) => !r.grade) ?? rows[0];
+
+  root.innerHTML = `
+    <div class="split">
+      <aside class="queue">
+        <p class="progress"><strong>${graded} of ${rows.length}</strong> graded · ${failed} failed</p>
+        <ul>
+          ${rows
+            .map(
+              (r) => `
+            <li class="${r.id === current.id ? "selected" : ""}">
+              <a href="#/review/grade/${r.id}">
+                <span class="mark ${r.grade ? (r.grade.pass ? "kept" : "dropped") : ""}">${r.grade ? (r.grade.pass ? "✓" : "✕") : "•"}</span>
+                <span class="id">${r.id}</span>
+                ${r.grade ? `<span class="reason ${r.grade.pass ? "pass" : "fail"}">${r.grade.pass ? "pass" : "fail"}</span>` : ""}
+              </a>
+            </li>`,
+            )
+            .join("")}
+        </ul>
+      </aside>
+      <article class="case">
+        <header>
+          <h2>${current.id} ${chip("category", current.expected.category)} ${chip("urgency", current.expected.urgency)}</h2>
+          ${current.property ? `<p class="meta">${esc(current.property.type)} · ${esc(current.property.heating)}</p>` : ""}
+        </header>
+        <pre class="report">${esc(current.report)}</pre>
+        <div class="expected">
+          <h3>Summary for the contractor</h3>
+          <p class="summary-text">${esc(current.summary)}</p>
+          <input id="note" placeholder="Note (what's wrong with it, if it fails)" value="${esc(current.grade?.note ?? "")}" />
+          <div class="actions">
+            <button id="pass" class="primary">Pass</button>
+            <button id="fail" class="danger">Fail</button>
+          </div>
+        </div>
+      </article>
+    </div>`;
+
+  const save = async (pass: boolean) => {
+    const note = root.querySelector<HTMLInputElement>("#note")!.value;
+    await postJson("/api/review/grade", { id: current.id, pass, note });
+    const next = rows.find((r) => !r.grade && r.id !== current.id);
+    if (next) location.hash = `#/review/grade/${next.id}`;
+    else renderGrade(root, current.id);
+  };
+  root.querySelector("#pass")!.addEventListener("click", () => save(true));
+  root.querySelector("#fail")!.addEventListener("click", () => save(false));
 }
