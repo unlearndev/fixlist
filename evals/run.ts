@@ -7,6 +7,7 @@
 //   npm run eval -- --no-judge         code graders only, no model grader
 //   npm run eval -- --only T-1013,T-1019
 //   npm run eval -- --markdown scorecard.md   also write the scorecard as Markdown (CI posts it)
+//   npm run eval -- --model <id> --save      keep this run in evals/runs/<model>.json, for npm run compare
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
 import { loadProperties, readJsonl } from "../server/data.ts";
@@ -32,6 +33,7 @@ const { values: args } = parseArgs({
     only: { type: "string" },
     judge: { type: "boolean", default: true },
     markdown: { type: "string" },
+    save: { type: "boolean", default: false },
   },
   allowNegative: true,
 });
@@ -226,6 +228,30 @@ if (args.markdown) {
     "",
   ].join("\n");
   writeFileSync(args.markdown, md);
+}
+
+if (args.save && !args.oracle && !args.null && !args.only) {
+  const latencies = attempts.flatMap((a) => (a.output && a.latencyMs ? [a.latencyMs] : [])).sort((a, b) => a - b);
+  mkdirSync(new URL("runs/", import.meta.url), { recursive: true });
+  writeFileSync(
+    new URL(`runs/${args.model}.json`, import.meta.url),
+    JSON.stringify(
+      {
+        model: args.model,
+        promptVersion: PROMPT_VERSION,
+        ranAt: new Date().toISOString(),
+        cases: graded.map((g) => g.c.id),
+        rows,
+        failures: sorted,
+        errors: allErrors,
+        costPer1000Reports: (featureCost / attempts.length) * 1000,
+        medianSeconds: latencies.length ? latencies[Math.floor(latencies.length / 2)] / 1000 : null,
+      },
+      null,
+      2,
+    ) + "\n",
+  );
+  console.log(`Saved to evals/runs/${args.model}.json`);
 }
 
 mkdirSync(new URL("results/", import.meta.url), { recursive: true });
