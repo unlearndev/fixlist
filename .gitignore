@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+.env.*
+evals/results/
+evals/.cache/
+.DS_Store

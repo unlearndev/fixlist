@@ -1,0 +1,25 @@
+{
+  "name": "fixlist",
+  "private": true,
+  "version": "1.4.0",
+  "description": "The repairs inbox for a small lettings agency, with AI triage of tenants' repair reports",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "triage": "node scripts/triage.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}

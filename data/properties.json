@@ -1,0 +1,286 @@
+[
+  {
+    "id": "P-01",
+    "address": "Flat 1, 14 Alder Road",
+    "type": "1-bed flat, ground floor",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Grace Holloway",
+      "phone": "07700 900101",
+      "email": "grace.holloway@example.com"
+    }
+  },
+  {
+    "id": "P-02",
+    "address": "Flat 2, 14 Alder Road",
+    "type": "2-bed flat, first floor",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": true,
+    "vulnerableNote": "elderly tenant, lives alone",
+    "tenant": {
+      "name": "Arthur Pennington",
+      "phone": "07700 900102",
+      "email": "arthur.pennington@example.com"
+    }
+  },
+  {
+    "id": "P-03",
+    "address": "22 Mill Lane",
+    "type": "3-bed house",
+    "toilets": 2,
+    "heating": "gas system boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Priya Raman",
+      "phone": "07700 900103",
+      "email": "priya.raman@example.com"
+    }
+  },
+  {
+    "id": "P-04",
+    "address": "9 Hawthorn Close",
+    "type": "2-bed house",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Daniel Okafor",
+      "phone": "07700 900104",
+      "email": "daniel.okafor@example.com"
+    }
+  },
+  {
+    "id": "P-05",
+    "address": "Flat 4, Station House, Station Street",
+    "type": "studio flat, second floor",
+    "toilets": 1,
+    "heating": "electric storage heaters",
+    "gasSupply": false,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Mia Kowalczyk",
+      "phone": "07700 900105",
+      "email": "mia.kowalczyk@example.com"
+    }
+  },
+  {
+    "id": "P-06",
+    "address": "31 Queen's Terrace",
+    "type": "4-bed house, shared by students",
+    "toilets": 2,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Ollie Barnes",
+      "phone": "07700 900106",
+      "email": "ollie.barnes@example.com"
+    }
+  },
+  {
+    "id": "P-07",
+    "address": "Flat 3, 8 Brook Street",
+    "type": "1-bed flat, second floor",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Hannah Lee",
+      "phone": "07700 900107",
+      "email": "hannah.lee@example.com"
+    }
+  },
+  {
+    "id": "P-08",
+    "address": "5 Orchard Way",
+    "type": "3-bed house",
+    "toilets": 2,
+    "heating": "gas system boiler",
+    "gasSupply": true,
+    "vulnerableTenant": true,
+    "vulnerableNote": "newborn baby in the household",
+    "tenant": {
+      "name": "Sophie Marsh",
+      "phone": "07700 900108",
+      "email": "sophie.marsh@example.com"
+    }
+  },
+  {
+    "id": "P-09",
+    "address": "Flat 6, Victoria Court, Victoria Road",
+    "type": "2-bed flat, third floor",
+    "toilets": 1,
+    "heating": "electric panel heaters",
+    "gasSupply": false,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Tomasz Nowak",
+      "phone": "07700 900109",
+      "email": "tomasz.nowak@example.com"
+    }
+  },
+  {
+    "id": "P-10",
+    "address": "17 Chapel Walk",
+    "type": "2-bed terraced house",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Ellie Fraser",
+      "phone": "07700 900110",
+      "email": "ellie.fraser@example.com"
+    }
+  },
+  {
+    "id": "P-11",
+    "address": "40 Mill Lane",
+    "type": "3-bed house",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": true,
+    "vulnerableNote": "tenant uses a wheelchair",
+    "tenant": {
+      "name": "Margaret Doyle",
+      "phone": "07700 900111",
+      "email": "margaret.doyle@example.com"
+    }
+  },
+  {
+    "id": "P-12",
+    "address": "Flat 2, 3 Kingfisher Wharf",
+    "type": "2-bed flat, first floor",
+    "toilets": 2,
+    "heating": "electric heating",
+    "gasSupply": false,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Ravi Sharma",
+      "phone": "07700 900112",
+      "email": "ravi.sharma@example.com"
+    }
+  },
+  {
+    "id": "P-13",
+    "address": "12 Beech Grove",
+    "type": "3-bed semi-detached house",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Liam Cartwright",
+      "phone": "07700 900113",
+      "email": "liam.cartwright@example.com"
+    }
+  },
+  {
+    "id": "P-14",
+    "address": "Flat 5, 14 Alder Road",
+    "type": "1-bed flat, top floor",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Chloe Adebayo",
+      "phone": "07700 900114",
+      "email": "chloe.adebayo@example.com"
+    }
+  },
+  {
+    "id": "P-15",
+    "address": "7 Rope Walk",
+    "type": "2-bed cottage",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Peter Lindqvist",
+      "phone": "07700 900115",
+      "email": "peter.lindqvist@example.com"
+    }
+  },
+  {
+    "id": "P-16",
+    "address": "Flat 1, Station House, Station Street",
+    "type": "1-bed flat, ground floor",
+    "toilets": 1,
+    "heating": "electric storage heaters",
+    "gasSupply": false,
+    "vulnerableTenant": true,
+    "vulnerableNote": "elderly tenant, lives alone",
+    "tenant": {
+      "name": "Dorothy Ames",
+      "phone": "07700 900116",
+      "email": "dorothy.ames@example.com"
+    }
+  },
+  {
+    "id": "P-17",
+    "address": "28 Queen's Terrace",
+    "type": "3-bed house",
+    "toilets": 1,
+    "heating": "gas combi boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Jamal Hussain",
+      "phone": "07700 900117",
+      "email": "jamal.hussain@example.com"
+    }
+  },
+  {
+    "id": "P-18",
+    "address": "Flat 9, Victoria Court, Victoria Road",
+    "type": "1-bed flat, first floor",
+    "toilets": 1,
+    "heating": "electric panel heaters",
+    "gasSupply": false,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Zoe Hartley",
+      "phone": "07700 900118",
+      "email": "zoe.hartley@example.com"
+    }
+  },
+  {
+    "id": "P-19",
+    "address": "2 Hawthorn Close",
+    "type": "4-bed detached house",
+    "toilets": 3,
+    "heating": "gas system boiler",
+    "gasSupply": true,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Nick Bellamy",
+      "phone": "07700 900119",
+      "email": "nick.bellamy@example.com"
+    }
+  },
+  {
+    "id": "P-20",
+    "address": "Flat 3, 3 Kingfisher Wharf",
+    "type": "2-bed flat, ground floor",
+    "toilets": 1,
+    "heating": "electric heating",
+    "gasSupply": false,
+    "vulnerableTenant": false,
+    "tenant": {
+      "name": "Aisha Mensah",
+      "phone": "07700 900120",
+      "email": "aisha.mensah@example.com"
+    }
+  }
+]
