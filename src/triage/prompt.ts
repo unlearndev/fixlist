@@ -53,9 +53,17 @@ Write the summary for the contractor, in at most three sentences: what's wrong, 
 
 const CHANNELS = { email: "email", form: "web form", phone: "phone call, typed up by staff" };
 
-// The message for one report. The property's details are on the job sheet, so the model only needs the report.
+// The message for one report: the property record, then the report itself.
+// The repairs policy depends on the record (one toilet, a vulnerable tenant), so it always goes with the report.
 export function buildUserMessage(report: Report, property: Property): string {
-  return `Report (${CHANNELS[report.channel]})
+  return `Property record
+- Type: ${property.type}
+- Toilets: ${property.toilets}
+- Heating: ${property.heating}
+- Gas supply: ${property.gasSupply ? "yes" : "no"}
+- Vulnerable tenant: ${property.vulnerableTenant ? `yes (${property.vulnerableNote})` : "no"}
+
+Report (${CHANNELS[report.channel]})
 <report>
 ${report.text}
 </report>`;
